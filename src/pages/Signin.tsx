@@ -17,10 +17,10 @@ export const Signin = () => {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
 
-    const response = await axios.post(BACKEND_URL + "/signin", {
-      username,
-      password,
-    });
+    const users = { username, password };
+
+    const response = await axios.post(BACKEND_URL + "/signin", users);
+    localStorage.setItem("user", username as string);
     //@ts-ignore
     const jwt = response.data.token;
     localStorage.setItem("token", jwt);
